@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CST LOGO DESIGN</title>
+<meta charset="UTF-8">
+<style>
+#canvas{
+left:200px;
+}
+#pannel{
+float:left;
+margin-right:200px;
+}
+footer {display:block; border-top: 1px solid orange; margin:
+10px; font-family: "Trebuchet MS", Arial, Helvetica, sansserif;
+font-weight: bold;}
+article {display:block; font-family: Georgia, "Times New
+Roman", Times, serif; margin: 5px;}
+</style>
+<script type="text/javascript" src="jscolor/jscolor.js"></script>
+<script type="text/javascript" src="canvas2image.js"></script>
+
+<script>
+var ctx;
+var factorvalue = 1;
+var text2="HTML"
+var movetext=31;
+var secondcolor="#F06529";
+var maincolor="#E34C26";
+var thirdcolor="#EBEBEB";
+var forthcolor="#FFFFFF";
+var textcolor="#000000";
+var movetext2=60;
+var fontfamily = "65px 'Gill Sans Ultra Bold', sans-serif";
+function init() {
+ctx = document.getElementById('canvas').getContext('2d');
+ctx.font = fontfamily;
+ctx.save();
+dologo();
+}
+function dologo(){
+var offsety = 80 ;
+ctx.restore();
+ctx.save();
+ctx.clearRect(0,0,600,400);
+ctx.scale(factorvalue,factorvalue);
+ctx.fillStyle = textcolor;
+ctx.fillText(text2, movetext,movetext2);
+ctx.translate(0,offsety);
+ctx.fillStyle = maincolor;
+ctx.beginPath();
+ctx.moveTo(39, 250);
+ctx.lineTo(17, 0);
+ctx.lineTo(262, 0);
+ctx.lineTo(239, 250);
+ctx.lineTo(139, 278);
+ctx.closePath();
+ctx.fill();
+ctx.fillStyle = secondcolor;
+ctx.beginPath();
+ctx.moveTo(139, 257);
+ctx.lineTo(220, 234);
+ctx.lineTo(239, 20);
+ctx.lineTo(139, 20);
+ctx.closePath();
+ctx.fill();
+ctx.fillStyle = thirdcolor;
+ctx.beginPath();
+ctx.moveTo(139, 113);
+ctx.lineTo(98, 113);
+ctx.lineTo(96, 82);
+ctx.lineTo(139, 82);
+ctx.lineTo(139, 51);
+ctx.lineTo(62, 51);
+ctx.lineTo(70, 144);
+ctx.lineTo(139, 144);
+ctx.closePath();
+ctx.fill();
+ctx.beginPath(); 
+ctx.moveTo(139, 193); 
+ctx.lineTo(105, 184); 
+ctx.lineTo(103, 159); 
+ctx.lineTo(72, 159); 
+ctx.lineTo(76, 207); 
+ctx.lineTo(139, 225); 
+ctx.closePath(); 
+ctx.fill();
+ctx.fillStyle = forthcolor;
+ctx.beginPath(); 
+ctx.moveTo(139, 113); 
+ctx.lineTo(139, 144); 
+ctx.lineTo(177, 144); 
+ctx.lineTo(173, 184);
+ctx.lineTo(139, 193); 
+ctx.lineTo(139, 225); 
+ctx.lineTo(202, 207); 
+ctx.lineTo(210, 113); 
+ctx.fill(); 
+ctx.beginPath(); 
+ctx.moveTo(139, 51);
+ctx.lineTo(139, 82); 
+ctx.lineTo(213, 82);
+ctx.lineTo(216, 51);
+ctx.closePath(); 
+ctx.fill(); 
+} 
+function changescale(val) { 
+
+factorvalue = val / 100; 
+
+dologo(); 
+} 
+function changetext(val){
+text2=val;
+dologo();
+}
+function changetextlocation(val){
+movetext=26+val/5;
+dologo();
+}
+function changetextlocation2(val){
+movetext2=55+val/5;
+dologo();
+}
+function changetextcolor(val){
+textcolor="#"+val;
+dologo();
+}
+function changemaincolor(val){
+maincolor="#"+val;
+dologo();
+}
+function changesecondcolor(val){
+secondcolor="#"+val;
+dologo();
+}
+function changethirdcolor(val){
+thirdcolor="#"+val;
+dologo();
+}
+function changeforthcolor(val){
+forthcolor="#"+val;
+dologo();
+}
+function to_image(){
+                var canvas = document.getElementById("canvas");
+                
+                Canvas2Image.saveAsPNG(canvas);
+            }
+			
+</script> 
+</head>
+<body onLoad="init();"> 
+<canvas id="canvas" width="600" height="400"> 
+Your browser does not support the canvas element. message to appear if canvas not
+supported
+</canvas> 
+<div id="pannel">
+<article> 
+Scale percentage: <input id="slide" type="range" min="0"
+max="100" value="100" onChange="changescale(this.value)"
+step="10"/>
+</article>
+<article>
+TEXT : <input type="text" value="HTML" onChange="changetext(this.value)" >
+</article>
+<article>
+Move Text Left-Right : <input id="slide" type="range" min="0" max="100" value="50" onChange="changetextlocation(this.value)" step="10">
+</article>
+<article>
+Move Text UP-Down: <input id="slide" type="range" min="0" max="100" value="50" onChange="changetextlocation2(this.value)" step="10">
+</article>
+<article>
+Select Text  Color: <input class="color" value="000000" onChange="changetextcolor(this.value)">
+</article>
+<article>
+Select 1st Color : <input class="color" value="E34C26" onChange="changemaincolor(this.value)">
+</article>
+<article>
+Select 2nd  Color: <input class="color" value="F06529" onChange="changesecondcolor(this.value)">
+</article>
+<article>
+Select 3rd  Color: <input class="color" value="EBEBEB" onChange="changethirdcolor(this.value)">
+</article>
+<article>
+Select 4th  Color: <input class="color" value="FFFFFF" onChange="changeforthcolor(this.value)">
+</article>
+</div>
+<div><button id="save" onclick="to_image()">SAVE</button></div>
+        
+</body>
+</html>
